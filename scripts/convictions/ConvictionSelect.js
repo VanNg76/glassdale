@@ -3,7 +3,7 @@ import { getConvictions, useConvictions } from "./ConvictionProvider.js"
 const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".filters__crime")
 
-// on the eventHub, change event for dropdown list
+// on the eventHub, change event for "convictions (crimes)" dropdown list
 eventHub.addEventListener("change", event => {
     if (event.target.id === "crimeSelect") {
         eventHub.dispatchEvent(new CustomEvent("crimeChosen", {

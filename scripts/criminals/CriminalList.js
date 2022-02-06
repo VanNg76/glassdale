@@ -4,12 +4,23 @@ const eventHub = document.querySelector(".container")
 const contentTarget = document.querySelector(".criminalsContainer")
 
 
-// Listen for the custom event you dispatched in ConvictionSelect
+// Listen for the custom event dispatched in ConvictionSelect
 eventHub.addEventListener("crimeChosen", event => {
     if (event.detail.crimeThatWasChosen !== "0") {
         const criminals = useCriminals()
         
         const matchingCriminals = criminals.filter(criminal => criminal.conviction === event.detail.crimeThatWasChosen)
+
+        render(matchingCriminals)
+    }
+})
+
+// Listen for the custom event dispatched in OfficerSelect
+eventHub.addEventListener("officerChosen", event => {
+    if (event.detail.officerThatWasChosen !== "0") {
+        const criminals = useCriminals()
+        
+        const matchingCriminals = criminals.filter(criminal => criminal.arrestingOfficer === event.detail.officerThatWasChosen)
 
         render(matchingCriminals)
     }
