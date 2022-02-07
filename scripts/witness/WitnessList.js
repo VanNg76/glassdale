@@ -5,8 +5,8 @@ const eventHub = document.querySelector(".container")
 
 export const render = (witnessData) => {
     contentTarget.innerHTML = `
-        <button id='showWitness'>Show Witnesses</button>
-        <h2>Witnesses:</h2>
+    <button id='showWitness'>Show Witnesses</button>
+    <h2>Witnesses:</h2>
         <div class="witnessList">
             <ul>
                 ${witnessData.map(witness => {
