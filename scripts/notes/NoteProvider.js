@@ -2,8 +2,6 @@ const applicationState = {
     notes: []
 }
 
-const mainContainer = document.querySelector("#container")
-
 // fetch json data
 export const getNotes = () => {
     return fetch("http://localhost:8088/notes")
@@ -22,7 +20,8 @@ export const useNotes = () => {
 const eventHub = document.querySelector(".container")
 
 const dispatchStateChangeEvent = () => {
-    eventHub.dispatchEvent(new CustomEvent("notesChanged"))
+    const customEvent = new CustomEvent("notesChanged")
+    eventHub.dispatchEvent(customEvent)
 }
 
 export const saveNote = (note) => {

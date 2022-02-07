@@ -1,5 +1,5 @@
 import { NoteForm } from "./NoteForm.js"
-import { getNotes, useNotes, saveNote } from "./NoteProvider.js"
+import { getNotes, useNotes } from "./NoteProvider.js"
 
 const contentTarget = document.querySelector(".noteList")
 const eventHub = document.querySelector(".container")

@@ -1,0 +1,9 @@
+.witnessList {
+    text-align: left;
+}
+
+#showWitness {
+    background-color: lightsalmon;
+    width: fit-content;
+    margin: 5px 0 5px 0;
+}
