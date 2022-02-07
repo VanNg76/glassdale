@@ -1,17 +1,21 @@
 import { NoteForm } from "./NoteForm.js"
-import { getNotes, useNotes } from "./NoteProvider.js"
+import { getNotes, useNotes, saveNote } from "./NoteProvider.js"
 
 const contentTarget = document.querySelector(".noteList")
 const eventHub = document.querySelector(".container")
 
 export const render = (notesCollection) => {
     contentTarget.innerHTML = `
-        <ul>
-            ${notesCollection.map(note => {
-                return `<li>${note.date}: ${note.text}\n Suspect: ${note.suspect}</li>`
-                }).join("")
-            }
-        </ul>
+        ${notesCollection.map(noteObject => {
+            return `<section class="note">
+                        <div class="note__text">${ noteObject.text }</div>
+                        <div class="note__suspect">Suspect: ${ noteObject.suspect }</div>
+                        <div class="note__author">Author: ${ noteObject.author }</div>
+                        <div class="note__date">Date: ${ noteObject.date }</div>
+                    </section>
+                    <br>`
+            }).join("")
+        }
     `
 }
 
@@ -23,8 +27,12 @@ export const NoteList = () => {
         })
 }
 
-eventHub.addEventListener("noteStateChanged", () => {
-    NoteList()
+eventHub.addEventListener("notesChanged", () => {
     NoteForm()
+    NoteList()
+})
+
+eventHub.addEventListener("showNotesClicked", () => {
+    NoteList()
 })
 

@@ -7,6 +7,10 @@ const render = () => {
     contentTarget.innerHTML = `
     <h2>Notes</h2>
     <div class="field">
+        <label class="label" for="author">Author:</label>
+        <input type="text" name="author" class="input" />
+    </div>
+    <div class="field">
         <label class="label" for="noteText">Notes:</label>
         <input type="text" name="noteText" class="input" />
     </div>
@@ -33,6 +37,7 @@ eventHub.addEventListener("click", clickEvent => {
 
         // Make a new object representation of a note
         const newNote = {
+            author: document.querySelector('input[name="author"]').value,
             text: document.querySelector('input[name="noteText"]').value,
             date: document.querySelector('input[name="noteDate"]').value,
             suspect: document.querySelector('input[name="suspect"]').value

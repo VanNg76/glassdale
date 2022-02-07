@@ -1,3 +1,4 @@
+import { saveNote } from "../notes/NoteProvider.js"
 import { getCriminals, useCriminals } from "./CriminalProvider.js"
 
 const eventHub = document.querySelector(".container")
@@ -35,13 +36,29 @@ const render = criminalCollection => {
                 return `<li>Name: ${criminal.name}, ${criminal.age} years old,
                 conviction: ${criminal.conviction},
                 incarceration date: ${new Date(criminal.incarceration.start).toLocaleDateString('en-US')}
-                to ${new Date(criminal.incarceration.end).toLocaleDateString('en-US')}</li>`
+                to ${new Date(criminal.incarceration.end).toLocaleDateString('en-US')}
+                <button id="associates--${criminal.id}">Associate Alibis</button>
+                </li>`
             }).join("")
             }
         </ol>
     `
 }
 
+// click event for Associate Alibis button
+eventHub.addEventListener("click", event => {
+    if (event.target.id.startsWith("associates--")) {
+        const [,clickedId] = event.target.id.split("--")
+        const criminals = useCriminals()
+
+        const foundCriminal = criminals.find(criminal => criminal.id === parseInt(clickedId))
+        
+        // display an alert to show "known_associates" info
+        foundCriminal.known_associates.forEach(elem => {
+            return alert(`Name: ${elem.name}, Alibi: ${elem.alibi}`)
+        })
+    }   
+})
 
 // Render ALL criminals initally
 export const CriminalList = () => {
